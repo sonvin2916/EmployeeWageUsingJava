@@ -25,6 +25,7 @@ public class EmpWage
 				default: 
 			   	   empHrs=0;
 			}
+			totalWorkingDays+=1;
 			totalEmpHrs = totalEmpHrs + empHrs;
 			System.out.println("Day:"+totalWorkingDays+"Emp Hr : "+empHrs);
 		}
@@ -38,4 +39,3 @@ public class EmpWage
 	}		
 
 }
-	
