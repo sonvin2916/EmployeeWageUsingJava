@@ -2,9 +2,7 @@ public class EmpWage
 {
         public static final int partTime=1;
         public static final int fullTime=2;
-        public static final int empRatePerHr=20;
-        public static final int numOfWorkingDays=20;
-        public static final int maxHrsInMonth=20;
+        
 
         public static int computeCompany(String company , int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth)
         {
