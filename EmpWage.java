@@ -2,11 +2,22 @@ public class EmpWage
 {
         public static final int partTime=1;
         public static final int fullTime=2;
-        public static final int empRatePerHr=20;
-        public static final int numOfWorkingDays=20;
-        public static final int maxHrsInMonth=20;
 
-        public static int computeCompany(String company , int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth)
+	private final String company;
+        private final int empRatePerHr;
+        private final int numOfWorkingDays;
+        private final int maxHrsInMonth;
+	private int totalEmpWage;
+
+	public EmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth)
+	{
+		this.company = company;
+		this.empRatePerHr = empRatePerHr;
+		this.numOfWorkingDays = numOfWorkingDays;
+		this.maxHrsInMonth = maxHrsInMonth;
+	}
+	
+        public void computeCompany()
         {
                 int empHrs=0;
                 int totalEmpHrs=0;
@@ -30,19 +41,26 @@ public class EmpWage
                         totalEmpHrs = totalEmpHrs + empHrs;
                         System.out.println("Day: "+totalWorkingDays+" Emp Hr : "+empHrs);
                 }
-                int totalEmpWage = totalEmpHrs*empRatePerHr;
-                System.out.println();
-                System.out.println("Total Employee wage for company " +company+ " is:"+totalEmpWage);
-         	 return totalEmpWage;
+                totalEmpWage = totalEmpHrs*empRatePerHr;
 	}
-        public static void main(String args[])
-        {
-               
-                computeCompany("BigBazar",20,20,10);
-		computeCompany("Reliance",20,20,10);
-           
 
-        }
 
+	public String toString()
+	{
+                
+      	return "Total Employee wage for company " +company+ " is:"+totalEmpWage;
+      
+	}
+	public static void main(String args[])
+	{
+        	EmpWage Bigbazar = new EmpWage("BigBazar", 20, 2, 10);
+		EmpWage reliance = new EmpWage("Reliance", 10, 4, 20);       
+		Bigbazar.computeCompany();
+		reliance.computeCompany();
+
+		System.out.println(Bigbazar);
+		System.out.println(reliance);
+	}
 }
 
+	
