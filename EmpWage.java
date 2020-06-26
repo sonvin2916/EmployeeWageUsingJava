@@ -6,7 +6,7 @@ public class EmpWage
 	public static final int numOfWorkingDays=20;
 	public static final int maxHrsInMonth=20;
 
-	public static int computeEmpWage()	
+	public static int getEmpWage()	
 	{		
 		int empHrs=0;
 		int totalEmpHrs=0;
@@ -35,7 +35,7 @@ public class EmpWage
 	}
 	public static void main(String args[])
 	{
-		computeEmpWage();
+		getEmpWage();
 	}		
 
 }
