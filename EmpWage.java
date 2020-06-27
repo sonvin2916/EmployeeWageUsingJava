@@ -3,27 +3,36 @@ public class EmpWage
         public static final int partTime=1;
         public static final int fullTime=2;
 
-	private final String company;
-        private final int empRatePerHr;
-        private final int numOfWorkingDays;
-        private final int maxHrsInMonth;
-	private int totalEmpWage;
+	private int numOfCompany=0;
+	private CompanyWage[] wageArray;
 
-	public EmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth)
+	public EmpWage()
 	{
-		this.company = company;
-		this.empRatePerHr = empRatePerHr;
-		this.numOfWorkingDays = numOfWorkingDays;
-		this.maxHrsInMonth = maxHrsInMonth;
+		wageArray = new CompanyWage[5];
 	}
-	
-        public void computeCompany()
+
+	private void addCompanyWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth)
+	{
+		wageArray[numOfCompany] = new CompanyWage(company,empRatePerHr,numOfWorkingDays, maxHrsInMonth);
+		numOfCompany++;
+	}
+
+	private void computeCompany()
+	{
+		for(int i=0; i<numOfCompany; i++)
+		{
+			wageArray[i].setTotalEmpWage(this.computeCompany(wageArray[i]));
+			System.out.println(EmpWageArray[i]);
+		}
+	}	
+
+        private int computeCompany(CompanyWage compWage)
         {
                 int empHrs=0;
                 int totalEmpHrs=0;
                 int totalWorkingDays=0;
                 System.out.println(" ----------Employee Wage for Company---------- ");
-                while (totalEmpHrs<=maxHrsInMonth && totalWorkingDays<numOfWorkingDays)
+                while (totalEmpHrs<=compWage.maxHrsInMonth && totalWorkingDays<compWage.numOfWorkingDays)
                 {
                         int empCheck=(int)Math.floor(Math.random() * 10) % 3;
                         switch (empCheck)
@@ -41,25 +50,15 @@ public class EmpWage
                         totalEmpHrs = totalEmpHrs + empHrs;
                         System.out.println("Day: "+totalWorkingDays+" Emp Hr : "+empHrs);
                 }
-                totalEmpWage = totalEmpHrs*empRatePerHr;
+                return  totalEmpHrs*compWage.empRatePerHr;
 	}
 
-
-	public String toString()
-	{
-                
-      	return "Total Employee wage for company " +company+ " is:"+totalEmpWage;
-      
-	}
 	public static void main(String args[])
 	{
-        	EmpWage Bigbazar = new EmpWage("BigBazar", 20, 2, 10);
-		EmpWage reliance = new EmpWage("Reliance", 10, 4, 20);       
-		Bigbazar.computeCompany();
-		reliance.computeCompany();
-
-		System.out.println(Bigbazar);
-		System.out.println(reliance);
+		EmpWage empWage = new EmpWage();
+        	empWage.addCompanyEmpWage("BigBazar", 20, 2, 10);
+		empWage.addCompanyEmpWage("Reliance", 10, 4, 20);       
+		empWage.computeCompany();
 	}
 }
 
