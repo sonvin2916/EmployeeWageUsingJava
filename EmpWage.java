@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.*;
 public class EmpWage implements IComputeEmpWage
 {
         public static final int partTime=1;
@@ -6,17 +7,19 @@ public class EmpWage implements IComputeEmpWage
 
 	
 	private ArrayList<CompanyEmpWage> companyEmpWageList;
+	private Map<String, CompanyEmpWage> companyToEmpWageMap;
 
 	public EmpWage()
 	{
 		companyEmpWageList = new ArrayList<>() ;
+		companyToEmpWageMap = new HashMap<>();
 	}
 
 	public void addCompanyEmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth)
 	{
 		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company,empRatePerHr,numOfWorkingDays, maxHrsInMonth);
 		companyEmpWageList.add(companyEmpWage);
-		
+		companyToEmpWageMap.put(company,companyEmpWage);
 	}
 
 	public void computeCompany()
@@ -26,6 +29,7 @@ public class EmpWage implements IComputeEmpWage
 			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
 			companyEmpWage.setTotalEmpWage(this.computeCompany(companyEmpWage));
 			System.out.println(companyEmpWage);
+			
 		}
 	}	
 
