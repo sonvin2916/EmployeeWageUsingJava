@@ -1,28 +1,31 @@
+import java.util.ArrayList;
 public class EmpWage implements IComputeEmpWage
 {
         public static final int partTime=1;
         public static final int fullTime=2;
 
-	private int numOfCompany=0;
-	private CompanyEmpWage[] companyEmpWageArray;
+	
+	private ArrayList<CompanyEmpWage> companyEmpWageList;
 
 	public EmpWage()
 	{
-		companyEmpWageArray = new CompanyEmpWage[5];
+		companyEmpWageList = new ArrayList<>() ;
 	}
 
 	public void addCompanyEmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth)
 	{
-		companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company,empRatePerHr,numOfWorkingDays, maxHrsInMonth);
-		numOfCompany++;
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company,empRatePerHr,numOfWorkingDays, maxHrsInMonth);
+		companyEmpWageList.add(companyEmpWage);
+		
 	}
 
 	public void computeCompany()
 	{
-		for(int i=0; i<numOfCompany; i++)
+		for(int i=0; i<companyEmpWageList.size(); i++)
 		{
-			companyEmpWageArray[i].setTotalEmpWage(this.computeCompany(companyEmpWageArray[i]));
-			System.out.println(companyEmpWageArray[i]);
+			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
+			companyEmpWage.setTotalEmpWage(this.computeCompany(companyEmpWage));
+			System.out.println(companyEmpWage);
 		}
 	}	
 
@@ -55,10 +58,11 @@ public class EmpWage implements IComputeEmpWage
 
 	public static void main(String args[])
 	{
-		EmpWage empWage = new EmpWage();
-        	empWage.addCompanyEmpWage("BigBazar", 20, 2, 10);
-		empWage.addCompanyEmpWage("Reliance", 10, 4, 20);       
+		IComputeEmpWage empWage = new EmpWage();
+        	empWage.addCompanyEmpWage("BigBazar", 20,  2, 10);
+		empWage.addCompanyEmpWage("Reliance", 10, 4,20);       
 		empWage.computeCompany();
+		
 	}
 }
 
