@@ -55,7 +55,7 @@ public class EmpWage implements IComputeEmpWage
 
 	public static void main(String args[])
 	{
-		EmpWage empWage = new EmpWage();
+		IComputeEmpWage empWage = new EmpWage();
         	empWage.addCompanyEmpWage("BigBazar", 20, 2, 10);
 		empWage.addCompanyEmpWage("Reliance", 10, 4, 20);       
 		empWage.computeCompany();
