@@ -31,6 +31,11 @@ public class EmpWage implements IComputeEmpWage
 			System.out.println(companyEmpWage);
 			
 		}
+	}
+	
+	public int getTotalWage(String company)
+	{
+		return companyToEmpWageMap.get(company).totalEmpWage; 
 	}	
 
         private int computeCompany(CompanyEmpWage companyEmpWage)
@@ -66,6 +71,9 @@ public class EmpWage implements IComputeEmpWage
         	empWage.addCompanyEmpWage("BigBazar", 20,  2, 10);
 		empWage.addCompanyEmpWage("Reliance", 10, 4,20);       
 		empWage.computeCompany();
+		System.out.println();
+		System.out.println("Total Wage for BigBazar company :"+ empWage.getTotalWage("BigBazar"));
+		System.out.println("Total Wage for Reliance company :"+ empWage.getTotalWage("Reliance"));
 		
 	}
 }
@@ -75,6 +83,7 @@ interface IComputeEmpWage
 {
 	public void addCompanyEmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth);
 	public void computeCompany();
+	public int getTotalWage(String company);
 }	
  class CompanyEmpWage
 {
